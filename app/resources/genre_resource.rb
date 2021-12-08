@@ -10,4 +10,12 @@ class GenreResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :songs do
+    assign_each do |genre, songs|
+      songs.select do |s|
+        s.id.in?(genre.songs.map(&:id))
+      end
+    end
+  end
+
 end

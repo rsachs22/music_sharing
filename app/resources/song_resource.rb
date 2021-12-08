@@ -16,4 +16,11 @@ class SongResource < ApplicationResource
 
   # Indirect associations
 
+  has_one    :genre
+
+  filter :genre_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:genre).where(:albums => {:genre_id => value})
+    end
+  end
 end
