@@ -1,28 +1,23 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: %i[show edit update destroy]
 
-  # GET /albums
   def index
     @q = Album.ransack(params[:q])
     @albums = @q.result(distinct: true).includes(:songs, :album_reviews,
                                                  :artist, :genre).page(params[:page]).per(10)
   end
 
-  # GET /albums/1
   def show
     @album_review = AlbumReview.new
     @song = Song.new
   end
 
-  # GET /albums/new
   def new
     @album = Album.new
   end
 
-  # GET /albums/1/edit
   def edit; end
 
-  # POST /albums
   def create
     @album = Album.new(album_params)
 
@@ -38,7 +33,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /albums/1
   def update
     if @album.update(album_params)
       redirect_to @album, notice: "Album was successfully updated."
@@ -47,7 +41,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # DELETE /albums/1
   def destroy
     @album.destroy
     message = "Album was successfully deleted."
@@ -60,12 +53,10 @@ class AlbumsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_album
     @album = Album.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def album_params
     params.require(:album).permit(:name, :album_art, :genre_id, :artist_id)
   end

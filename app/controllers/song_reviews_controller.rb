@@ -4,25 +4,20 @@ class SongReviewsController < ApplicationController
 
   before_action :set_song_review, only: %i[show edit update destroy]
 
-  # GET /song_reviews
   def index
     @q = SongReview.ransack(params[:q])
     @song_reviews = @q.result(distinct: true).includes(:user,
                                                        :song).page(params[:page]).per(10)
   end
 
-  # GET /song_reviews/1
   def show; end
 
-  # GET /song_reviews/new
   def new
     @song_review = SongReview.new
   end
 
-  # GET /song_reviews/1/edit
   def edit; end
 
-  # POST /song_reviews
   def create
     @song_review = SongReview.new(song_review_params)
 
@@ -38,7 +33,6 @@ class SongReviewsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /song_reviews/1
   def update
     if @song_review.update(song_review_params)
       redirect_to @song_review, notice: "Song review was successfully updated."
@@ -47,7 +41,6 @@ class SongReviewsController < ApplicationController
     end
   end
 
-  # DELETE /song_reviews/1
   def destroy
     @song_review.destroy
     message = "SongReview was successfully deleted."
@@ -68,12 +61,10 @@ class SongReviewsController < ApplicationController
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_song_review
     @song_review = SongReview.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def song_review_params
     params.require(:song_review).permit(:user_id, :body, :title, :stars,
                                         :song_id)

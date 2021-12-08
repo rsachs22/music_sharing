@@ -1,27 +1,22 @@
 class GenresController < ApplicationController
   before_action :set_genre, only: %i[show edit update destroy]
 
-  # GET /genres
   def index
     @q = Genre.ransack(params[:q])
     @genres = @q.result(distinct: true).includes(:albums,
                                                  :songs).page(params[:page]).per(10)
   end
 
-  # GET /genres/1
   def show
     @album = Album.new
   end
 
-  # GET /genres/new
   def new
     @genre = Genre.new
   end
 
-  # GET /genres/1/edit
   def edit; end
 
-  # POST /genres
   def create
     @genre = Genre.new(genre_params)
 
@@ -32,7 +27,6 @@ class GenresController < ApplicationController
     end
   end
 
-  # PATCH/PUT /genres/1
   def update
     if @genre.update(genre_params)
       redirect_to @genre, notice: "Genre was successfully updated."
@@ -41,7 +35,6 @@ class GenresController < ApplicationController
     end
   end
 
-  # DELETE /genres/1
   def destroy
     @genre.destroy
     redirect_to genres_url, notice: "Genre was successfully destroyed."
@@ -49,12 +42,10 @@ class GenresController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_genre
     @genre = Genre.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def genre_params
     params.require(:genre).permit(:name)
   end
