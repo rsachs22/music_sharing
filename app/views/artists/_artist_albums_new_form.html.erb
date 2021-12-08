@@ -27,7 +27,7 @@
     <%= f.label :genre_id %>
 
     <!-- Input for genre_id start -->
-    <%= f.text_field :genre_id, class: "form-control" %>
+    <%= f.collection_select :genre_id, Genre.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for genre_id end -->
   </div>
   <!-- Label and input for genre_id end -->

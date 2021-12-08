@@ -68,7 +68,7 @@
 
     <%= f.label :genre_id %>
     <!-- Input for genre_id start -->
-    <%= f.number_field :genre_id, class: genre_class, placeholder: "Enter genre" %>
+    <%= f.collection_select :genre_id, Genre.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for genre_id end -->
     <% if genre_was_invalid %>
       <% album.errors.full_messages_for(:genre).each do |message| %>
