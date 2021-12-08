@@ -9,6 +9,8 @@ class AlbumResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :genre
+
   belongs_to :artist
 
   has_many   :album_reviews
