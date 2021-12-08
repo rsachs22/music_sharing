@@ -1,0 +1,61 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Album Review #<%= album_review.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>User</dt>
+      <!-- Display user_id start -->
+      <dd><%= album_review.user_id %></dd>
+      <!-- Display user_id end -->
+
+      <dt>Body</dt>
+      <!-- Display body start -->
+      <dd><%= album_review.body %></dd>
+      <!-- Display body end -->
+
+      <dt>Title</dt>
+      <!-- Display title start -->
+      <dd><%= album_review.title %></dd>
+      <!-- Display title end -->
+
+      <dt>Stars</dt>
+      <!-- Display stars start -->
+      <dd><%= album_review.stars %></dd>
+      <!-- Display stars end -->
+
+      <dt>Album</dt>
+      <!-- Display album_id start -->
+      <dd><%= album_review.album_id %></dd>
+      <!-- Display album_id end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back album_review, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link album_review start -->
+      <div class="col">
+        <%= link_to edit_album_review_url(album_review), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link album_review end -->
+
+      <!-- Delete link album_review start -->
+      <div class="col">
+        <%= link_to album_review, method: :delete, data: { confirm: "Do you really want to delete this album_review?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link album_review end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(album_review.updated_at) %> ago
+  </div>
+</div>
