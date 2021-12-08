@@ -39,16 +39,20 @@
 
       <!-- Edit link song_review start -->
       <div class="col">
-        <%= link_to edit_song_review_url(song_review), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_user == @song_review.user %>
+          <%= link_to edit_song_review_url(song_review), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Edit link song_review end -->
 
       <!-- Delete link song_review start -->
       <div class="col">
-        <%= link_to song_review, method: :delete, data: { confirm: "Do you really want to delete this song_review?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == @song_review.user %>
+          <%= link_to song_review, method: :delete, data: { confirm: "Do you really want to delete this song_review?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Delete link song_review end -->

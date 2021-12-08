@@ -1,4 +1,6 @@
 class SongReviewsController < ApplicationController
+  before_action :current_user_must_be_song_review_user, only: [:edit, :update, :destroy] 
+
   before_action :set_song_review, only: [:show, :edit, :update, :destroy]
 
   # GET /song_reviews
@@ -57,6 +59,14 @@ class SongReviewsController < ApplicationController
 
 
   private
+
+  def current_user_must_be_song_review_user
+    set_song_review
+    unless current_user == @song_review.user
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_song_review
       @song_review = SongReview.find(params[:id])

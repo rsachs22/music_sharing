@@ -15,8 +15,10 @@
         <!-- Show link end -->
 
         <!-- Delete link start -->
-        <%= link_to song_review, method: :delete, data: { confirm: "Do you really want to delete this song_review" } do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == song_review.user %>
+          <%= link_to song_review, method: :delete do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
         <!-- Delete link end -->
 
