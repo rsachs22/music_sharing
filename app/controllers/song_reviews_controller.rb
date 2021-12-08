@@ -5,7 +5,8 @@ class SongReviewsController < ApplicationController
 
   # GET /song_reviews
   def index
-    @song_reviews = SongReview.page(params[:page]).per(10)
+    @q = SongReview.ransack(params[:q])
+    @song_reviews = @q.result(:distinct => true).includes(:user, :song).page(params[:page]).per(10)
   end
 
   # GET /song_reviews/1

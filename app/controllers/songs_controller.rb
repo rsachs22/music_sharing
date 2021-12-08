@@ -3,7 +3,8 @@ class SongsController < ApplicationController
 
   # GET /songs
   def index
-    @songs = Song.page(params[:page]).per(10)
+    @q = Song.ransack(params[:q])
+    @songs = @q.result(:distinct => true).includes(:song_reviews, :album, :artist, :genre).page(params[:page]).per(10)
   end
 
   # GET /songs/1

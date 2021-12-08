@@ -3,7 +3,8 @@ class AlbumsController < ApplicationController
 
   # GET /albums
   def index
-    @albums = Album.page(params[:page]).per(10)
+    @q = Album.ransack(params[:q])
+    @albums = @q.result(:distinct => true).includes(:songs, :album_reviews, :artist, :genre).page(params[:page]).per(10)
   end
 
   # GET /albums/1
