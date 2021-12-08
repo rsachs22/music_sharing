@@ -1,0 +1,83 @@
+<% was_validated = song.errors.any? %>
+
+<%= form_with(model: song, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for name start -->
+  <div class="form-group">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = song.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+    <!-- Input for name start -->
+    <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+    <!-- Input for name end -->
+    <% if name_was_invalid %>
+      <% song.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for name end -->
+  <!-- Label and input for album_id start -->
+  <div class="form-group">
+    <% album_class = "form-control" %>
+    <% album_was_invalid = song.errors.include?(:album) %>
+
+    <% if was_validated %>
+      <% if album_was_invalid %>
+        <% album_class << " is-invalid" %>
+      <% else %>
+        <% album_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :album_id %>
+    <!-- Input for album_id start -->
+    <%= f.number_field :album_id, class: album_class, placeholder: "Enter album" %>
+    <!-- Input for album_id end -->
+    <% if album_was_invalid %>
+      <% song.errors.full_messages_for(:album).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for album_id end -->
+  <!-- Label and input for artist_id start -->
+  <div class="form-group">
+    <% artist_class = "form-control" %>
+    <% artist_was_invalid = song.errors.include?(:artist) %>
+
+    <% if was_validated %>
+      <% if artist_was_invalid %>
+        <% artist_class << " is-invalid" %>
+      <% else %>
+        <% artist_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :artist_id %>
+    <!-- Input for artist_id start -->
+    <%= f.number_field :artist_id, class: artist_class, placeholder: "Enter artist" %>
+    <!-- Input for artist_id end -->
+    <% if artist_was_invalid %>
+      <% song.errors.full_messages_for(:artist).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for artist_id end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

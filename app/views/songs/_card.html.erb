@@ -1,0 +1,51 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Song #<%= song.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Name</dt>
+      <!-- Display name start -->
+      <dd><%= song.name %></dd>
+      <!-- Display name end -->
+
+      <dt>Album</dt>
+      <!-- Display album_id start -->
+      <dd><%= song.album_id %></dd>
+      <!-- Display album_id end -->
+
+      <dt>Artist</dt>
+      <!-- Display artist_id start -->
+      <dd><%= song.artist_id %></dd>
+      <!-- Display artist_id end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back song, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link song start -->
+      <div class="col">
+        <%= link_to edit_song_url(song), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link song end -->
+
+      <!-- Delete link song start -->
+      <div class="col">
+        <%= link_to song, method: :delete, data: { confirm: "Do you really want to delete this song?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link song end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(song.updated_at) %> ago
+  </div>
+</div>
