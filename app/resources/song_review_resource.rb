@@ -10,6 +10,8 @@ class SongReviewResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :song
+
   belongs_to :user
 
   # Indirect associations
