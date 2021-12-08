@@ -4,6 +4,8 @@ RSpec.describe Album, type: :model do
   
     describe "Direct Associations" do
 
+    it { should belong_to(:artist) }
+
     it { should have_many(:album_reviews) }
 
     it { should have_many(:songs) }
