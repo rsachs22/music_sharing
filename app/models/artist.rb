@@ -9,6 +9,10 @@ class Artist < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :album_reviews,
+             :through => :albums,
+             :source => :album_reviews
+
   # Validations
 
   # Scopes

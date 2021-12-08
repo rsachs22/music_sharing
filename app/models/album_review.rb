@@ -7,6 +7,10 @@ class AlbumReview < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :artist,
+             :through => :album,
+             :source => :artist
+
   # Validations
 
   # Scopes

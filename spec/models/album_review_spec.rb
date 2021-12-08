@@ -12,6 +12,8 @@ RSpec.describe AlbumReview, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_one(:artist) }
+
     end
 
     describe "Validations" do
