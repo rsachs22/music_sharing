@@ -7,6 +7,8 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :song_reviews
+
   # Indirect associations
 
 end
