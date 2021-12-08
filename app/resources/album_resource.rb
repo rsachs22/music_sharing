@@ -9,6 +9,8 @@ class AlbumResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :songs
+
   # Indirect associations
 
 end
