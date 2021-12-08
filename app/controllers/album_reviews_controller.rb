@@ -24,7 +24,12 @@ class AlbumReviewsController < ApplicationController
     @album_review = AlbumReview.new(album_review_params)
 
     if @album_review.save
-      redirect_to @album_review, notice: 'Album review was successfully created.'
+      message = 'AlbumReview was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @album_review, notice: message
+      end
     else
       render :new
     end

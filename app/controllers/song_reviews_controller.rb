@@ -24,7 +24,12 @@ class SongReviewsController < ApplicationController
     @song_review = SongReview.new(song_review_params)
 
     if @song_review.save
-      redirect_to @song_review, notice: 'Song review was successfully created.'
+      message = 'SongReview was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @song_review, notice: message
+      end
     else
       render :new
     end

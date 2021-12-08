@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @album_review = AlbumReview.new
+    @song_review = SongReview.new
   end
 
   # GET /users/new

@@ -8,6 +8,7 @@ class SongsController < ApplicationController
 
   # GET /songs/1
   def show
+    @song_review = SongReview.new
   end
 
   # GET /songs/new
@@ -24,7 +25,12 @@ class SongsController < ApplicationController
     @song = Song.new(song_params)
 
     if @song.save
-      redirect_to @song, notice: 'Song was successfully created.'
+      message = 'Song was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @song, notice: message
+      end
     else
       render :new
     end

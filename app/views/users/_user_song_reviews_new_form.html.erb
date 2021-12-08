@@ -1,0 +1,52 @@
+<!-- Form song_review start -->
+<%= form_with(model: @song_review, local: true) do |f| %>
+<!-- Form song_review end -->
+
+  <!-- Label and input for user_id start -->
+  <!-- Input for user_id start -->
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <!-- Input for user_id end -->
+  <!-- Label and input for user_id end -->
+
+  <!-- Label and input for body start -->
+  <div class="form-group">
+    <%= f.label :body %>
+
+    <!-- Input for body start -->
+    <%= f.text_field :body, class: "form-control" %>
+    <!-- Input for body end -->
+  </div>
+  <!-- Label and input for body end -->
+
+  <!-- Label and input for title start -->
+  <div class="form-group">
+    <%= f.label :title %>
+
+    <!-- Input for title start -->
+    <%= f.text_field :title, class: "form-control" %>
+    <!-- Input for title end -->
+  </div>
+  <!-- Label and input for title end -->
+
+  <!-- Label and input for stars start -->
+  <div class="form-group">
+    <%= f.label :stars %>
+
+    <!-- Input for stars start -->
+    <%= f.text_field :stars, class: "form-control" %>
+    <!-- Input for stars end -->
+  </div>
+  <!-- Label and input for stars end -->
+
+  <!-- Label and input for song_id start -->
+  <div class="form-group">
+    <%= f.label :song_id %>
+
+    <!-- Input for song_id start -->
+    <%= f.text_field :song_id, class: "form-control" %>
+    <!-- Input for song_id end -->
+  </div>
+  <!-- Label and input for song_id end -->
+
+  <%= f.submit "Create song review", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

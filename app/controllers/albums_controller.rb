@@ -8,6 +8,8 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1
   def show
+    @album_review = AlbumReview.new
+    @song = Song.new
   end
 
   # GET /albums/new
@@ -24,7 +26,12 @@ class AlbumsController < ApplicationController
     @album = Album.new(album_params)
 
     if @album.save
-      redirect_to @album, notice: 'Album was successfully created.'
+      message = 'Album was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @album, notice: message
+      end
     else
       render :new
     end

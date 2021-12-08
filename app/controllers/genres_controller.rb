@@ -8,6 +8,7 @@ class GenresController < ApplicationController
 
   # GET /genres/1
   def show
+    @album = Album.new
   end
 
   # GET /genres/new
