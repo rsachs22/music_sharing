@@ -6,6 +6,10 @@ class Genre < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :songs,
+             :through => :albums,
+             :source => :songs
+
   # Validations
 
   # Scopes

@@ -14,6 +14,8 @@ RSpec.describe Song, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_one(:genre) }
+
     end
 
     describe "Validations" do

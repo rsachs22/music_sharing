@@ -10,6 +10,8 @@ RSpec.describe Genre, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:songs) }
+
     end
 
     describe "Validations" do

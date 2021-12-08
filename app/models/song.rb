@@ -10,6 +10,10 @@ class Song < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :genre,
+             :through => :album,
+             :source => :genre
+
   # Validations
 
   # Scopes
