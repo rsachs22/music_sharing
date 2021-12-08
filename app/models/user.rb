@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  # Direct associations
+  
+  include JwtToken
+# Direct associations
 
   has_many   :album_reviews,
              :dependent => :destroy
