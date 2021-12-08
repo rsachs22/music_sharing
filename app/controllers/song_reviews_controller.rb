@@ -5,7 +5,7 @@ class SongReviewsController < ApplicationController
 
   # GET /song_reviews
   def index
-    @song_reviews = SongReview.all
+    @song_reviews = SongReview.page(params[:page]).per(10)
   end
 
   # GET /song_reviews/1

@@ -3,7 +3,7 @@ class GenresController < ApplicationController
 
   # GET /genres
   def index
-    @genres = Genre.all
+    @genres = Genre.page(params[:page]).per(10)
   end
 
   # GET /genres/1

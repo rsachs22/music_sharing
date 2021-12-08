@@ -3,7 +3,7 @@ class SongsController < ApplicationController
 
   # GET /songs
   def index
-    @songs = Song.all
+    @songs = Song.page(params[:page]).per(10)
   end
 
   # GET /songs/1

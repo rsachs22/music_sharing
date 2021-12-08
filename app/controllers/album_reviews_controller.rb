@@ -3,7 +3,7 @@ class AlbumReviewsController < ApplicationController
 
   # GET /album_reviews
   def index
-    @album_reviews = AlbumReview.all
+    @album_reviews = AlbumReview.page(params[:page]).per(10)
   end
 
   # GET /album_reviews/1
