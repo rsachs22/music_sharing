@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :song_reviews,
+             :dependent => :destroy
+
   # Indirect associations
 
   # Validations
