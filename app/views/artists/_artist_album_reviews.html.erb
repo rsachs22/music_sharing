@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Album Reviews
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @artist.album_reviews.each do |album_review| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <a href="/album_reviews/<%= album_review.id %>">
+          <%= album_review %>
+        </a>
+        <!-- Show link end -->
+
+      </li>
+    <% end %>
+
+  </ul>
+</div>

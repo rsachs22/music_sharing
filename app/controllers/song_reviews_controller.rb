@@ -42,8 +42,14 @@ class SongReviewsController < ApplicationController
   # DELETE /song_reviews/1
   def destroy
     @song_review.destroy
-    redirect_to song_reviews_url, notice: 'Song review was successfully destroyed.'
+    message = "SongReview was successfully deleted."
+    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referrer, notice: message
+    else
+      redirect_to song_reviews_url, notice: message
+    end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

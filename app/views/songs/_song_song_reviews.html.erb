@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Song Reviews
+
+    <a data-toggle="collapse" href="#song_song_reviews_new_form">
+      Add song review
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @song.song_reviews.each do |song_review| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <%= link_to song_review, song_review %>
+        <!-- Show link end -->
+
+        <!-- Delete link start -->
+        <%= link_to song_review, method: :delete, data: { confirm: "Do you really want to delete this song_review" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+        <!-- Delete link end -->
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="song_song_reviews_new_form">
+        <!-- New associationcollection form start -->
+
+        <!-- New associationcollection form end -->
+      </div>
+    </div>
+
+  </ul>
+</div>
