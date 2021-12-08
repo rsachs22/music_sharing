@@ -1,0 +1,46 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Artist #<%= artist.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Artist image</dt>
+      <!-- Display artist_image start -->
+      <dd><%= artist.artist_image %></dd>
+      <!-- Display artist_image end -->
+
+      <dt>Artist bio</dt>
+      <!-- Display artist_bio start -->
+      <dd><%= artist.artist_bio %></dd>
+      <!-- Display artist_bio end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back artist, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link artist start -->
+      <div class="col">
+        <%= link_to edit_artist_url(artist), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link artist end -->
+
+      <!-- Delete link artist start -->
+      <div class="col">
+        <%= link_to artist, method: :delete, data: { confirm: "Do you really want to delete this artist?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link artist end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(artist.updated_at) %> ago
+  </div>
+</div>
