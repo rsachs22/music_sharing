@@ -13,4 +13,12 @@ class ArtistResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :album_reviews do
+    assign_each do |artist, album_reviews|
+      album_reviews.select do |a|
+        a.id.in?(artist.album_reviews.map(&:id))
+      end
+    end
+  end
+
 end

@@ -16,4 +16,11 @@ class AlbumReviewResource < ApplicationResource
 
   # Indirect associations
 
+  has_one    :artist
+
+  filter :artist_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:artist).where(:albums => {:artist_id => value})
+    end
+  end
 end
