@@ -43,7 +43,7 @@
     <%= f.label :song_id %>
 
     <!-- Input for song_id start -->
-    <%= f.text_field :song_id, class: "form-control" %>
+    <%= f.collection_select :song_id, Song.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for song_id end -->
   </div>
   <!-- Label and input for song_id end -->

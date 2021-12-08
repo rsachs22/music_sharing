@@ -120,7 +120,7 @@
 
     <%= f.label :song_id %>
     <!-- Input for song_id start -->
-    <%= f.number_field :song_id, class: song_class, placeholder: "Enter song" %>
+    <%= f.collection_select :song_id, Song.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for song_id end -->
     <% if song_was_invalid %>
       <% song_review.errors.full_messages_for(:song).each do |message| %>
