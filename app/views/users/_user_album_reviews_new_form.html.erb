@@ -43,7 +43,7 @@
     <%= f.label :album_id %>
 
     <!-- Input for album_id start -->
-    <%= f.text_field :album_id, class: "form-control" %>
+    <%= f.collection_select :album_id, Album.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for album_id end -->
   </div>
   <!-- Label and input for album_id end -->
