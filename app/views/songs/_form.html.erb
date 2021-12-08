@@ -42,7 +42,7 @@
 
     <%= f.label :album_id %>
     <!-- Input for album_id start -->
-    <%= f.number_field :album_id, class: album_class, placeholder: "Enter album" %>
+    <%= f.collection_select :album_id, Album.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for album_id end -->
     <% if album_was_invalid %>
       <% song.errors.full_messages_for(:album).each do |message| %>
