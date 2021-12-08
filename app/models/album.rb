@@ -1,6 +1,8 @@
 class Album < ApplicationRecord
   # Direct associations
 
+  belongs_to :genre
+
   belongs_to :artist
 
   has_many   :album_reviews,

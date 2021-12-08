@@ -1,6 +1,9 @@
 class Genre < ApplicationRecord
   # Direct associations
 
+  has_many   :albums,
+             :dependent => :destroy
+
   # Indirect associations
 
   # Validations
