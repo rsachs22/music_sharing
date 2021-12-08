@@ -20,5 +20,4 @@ class ArtistResource < ApplicationResource
       end
     end
   end
-
 end

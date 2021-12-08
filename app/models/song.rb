@@ -6,13 +6,13 @@ class Song < ApplicationRecord
   belongs_to :album
 
   has_many   :song_reviews,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
   has_one    :genre,
-             :through => :album,
-             :source => :genre
+             through: :album,
+             source: :genre
 
   # Validations
 
@@ -21,5 +21,4 @@ class Song < ApplicationRecord
   def to_s
     name
   end
-
 end

@@ -2,16 +2,16 @@ class Artist < ApplicationRecord
   # Direct associations
 
   has_many   :songs,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :albums,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
   has_many   :album_reviews,
-             :through => :albums,
-             :source => :album_reviews
+             through: :albums,
+             source: :album_reviews
 
   # Validations
 
@@ -20,5 +20,4 @@ class Artist < ApplicationRecord
   def to_s
     artist_image
   end
-
 end

@@ -6,10 +6,10 @@ class Album < ApplicationRecord
   belongs_to :artist
 
   has_many   :album_reviews,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :songs,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
@@ -20,5 +20,4 @@ class Album < ApplicationRecord
   def to_s
     name
   end
-
 end

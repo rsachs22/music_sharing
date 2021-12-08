@@ -1,10 +1,11 @@
 class SongsController < ApplicationController
-  before_action :set_song, only: [:show, :edit, :update, :destroy]
+  before_action :set_song, only: %i[show edit update destroy]
 
   # GET /songs
   def index
     @q = Song.ransack(params[:q])
-    @songs = @q.result(:distinct => true).includes(:song_reviews, :album, :artist, :genre).page(params[:page]).per(10)
+    @songs = @q.result(distinct: true).includes(:song_reviews, :album,
+                                                :artist, :genre).page(params[:page]).per(10)
   end
 
   # GET /songs/1
@@ -18,17 +19,16 @@ class SongsController < ApplicationController
   end
 
   # GET /songs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /songs
   def create
     @song = Song.new(song_params)
 
     if @song.save
-      message = 'Song was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Song was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @song, notice: message
       end
@@ -40,7 +40,7 @@ class SongsController < ApplicationController
   # PATCH/PUT /songs/1
   def update
     if @song.update(song_params)
-      redirect_to @song, notice: 'Song was successfully updated.'
+      redirect_to @song, notice: "Song was successfully updated."
     else
       render :edit
     end
@@ -50,22 +50,22 @@ class SongsController < ApplicationController
   def destroy
     @song.destroy
     message = "Song was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to songs_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_song
-      @song = Song.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def song_params
-      params.require(:song).permit(:name, :album_id, :artist_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_song
+    @song = Song.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def song_params
+    params.require(:song).permit(:name, :album_id, :artist_id)
+  end
 end

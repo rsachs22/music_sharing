@@ -1,13 +1,13 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe SongReviewResource, type: :resource do
-  describe 'creating' do
+  describe "creating" do
     let(:payload) do
       {
         data: {
-          type: 'song_reviews',
-          attributes: { }
-        }
+          type: "song_reviews",
+          attributes: {},
+        },
       }
     end
 
@@ -15,23 +15,24 @@ RSpec.describe SongReviewResource, type: :resource do
       SongReviewResource.build(payload)
     end
 
-    it 'works' do
-      expect {
-        expect(instance.save).to eq(true), instance.errors.full_messages.to_sentence
-      }.to change { SongReview.count }.by(1)
+    it "works" do
+      expect do
+        expect(instance.save).to eq(true),
+                                 instance.errors.full_messages.to_sentence
+      end.to change { SongReview.count }.by(1)
     end
   end
 
-  describe 'updating' do
+  describe "updating" do
     let!(:song_review) { create(:song_review) }
 
     let(:payload) do
       {
         data: {
           id: song_review.id.to_s,
-          type: 'song_reviews',
-          attributes: { } # Todo!
-        }
+          type: "song_reviews",
+          attributes: {}, # Todo!
+        },
       }
     end
 
@@ -39,25 +40,25 @@ RSpec.describe SongReviewResource, type: :resource do
       SongReviewResource.find(payload)
     end
 
-    xit 'works (add some attributes and enable this spec)' do
-      expect {
+    xit "works (add some attributes and enable this spec)" do
+      expect do
         expect(instance.update_attributes).to eq(true)
-      }.to change { song_review.reload.updated_at }
+      end.to change { song_review.reload.updated_at }
       # .and change { song_review.foo }.to('bar') <- example
     end
   end
 
-  describe 'destroying' do
+  describe "destroying" do
     let!(:song_review) { create(:song_review) }
 
     let(:instance) do
       SongReviewResource.find(id: song_review.id)
     end
 
-    it 'works' do
-      expect {
+    it "works" do
+      expect do
         expect(instance.destroy).to eq(true)
-      }.to change { SongReview.count }.by(-1)
+      end.to change { SongReview.count }.by(-1)
     end
   end
 end

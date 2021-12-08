@@ -13,7 +13,7 @@ class Api::V1::AlbumsController < Api::V1::GraphitiController
     album = AlbumResource.build(params)
 
     if album.save
-      render jsonapi: album, status: 201
+      render jsonapi: album, status: :created
     else
       render jsonapi_errors: album
     end
@@ -33,7 +33,7 @@ class Api::V1::AlbumsController < Api::V1::GraphitiController
     album = AlbumResource.find(params)
 
     if album.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: album
     end

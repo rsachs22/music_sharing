@@ -12,5 +12,4 @@ class UserResource < ApplicationResource
   has_many   :song_reviews
 
   # Indirect associations
-
 end

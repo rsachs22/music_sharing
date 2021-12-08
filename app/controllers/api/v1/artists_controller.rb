@@ -13,7 +13,7 @@ class Api::V1::ArtistsController < Api::V1::GraphitiController
     artist = ArtistResource.build(params)
 
     if artist.save
-      render jsonapi: artist, status: 201
+      render jsonapi: artist, status: :created
     else
       render jsonapi_errors: artist
     end
@@ -33,7 +33,7 @@ class Api::V1::ArtistsController < Api::V1::GraphitiController
     artist = ArtistResource.find(params)
 
     if artist.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: artist
     end

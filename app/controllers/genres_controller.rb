@@ -1,10 +1,11 @@
 class GenresController < ApplicationController
-  before_action :set_genre, only: [:show, :edit, :update, :destroy]
+  before_action :set_genre, only: %i[show edit update destroy]
 
   # GET /genres
   def index
     @q = Genre.ransack(params[:q])
-    @genres = @q.result(:distinct => true).includes(:albums, :songs).page(params[:page]).per(10)
+    @genres = @q.result(distinct: true).includes(:albums,
+                                                 :songs).page(params[:page]).per(10)
   end
 
   # GET /genres/1
@@ -18,15 +19,14 @@ class GenresController < ApplicationController
   end
 
   # GET /genres/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /genres
   def create
     @genre = Genre.new(genre_params)
 
     if @genre.save
-      redirect_to @genre, notice: 'Genre was successfully created.'
+      redirect_to @genre, notice: "Genre was successfully created."
     else
       render :new
     end
@@ -35,7 +35,7 @@ class GenresController < ApplicationController
   # PATCH/PUT /genres/1
   def update
     if @genre.update(genre_params)
-      redirect_to @genre, notice: 'Genre was successfully updated.'
+      redirect_to @genre, notice: "Genre was successfully updated."
     else
       render :edit
     end
@@ -44,17 +44,18 @@ class GenresController < ApplicationController
   # DELETE /genres/1
   def destroy
     @genre.destroy
-    redirect_to genres_url, notice: 'Genre was successfully destroyed.'
+    redirect_to genres_url, notice: "Genre was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_genre
-      @genre = Genre.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def genre_params
-      params.require(:genre).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_genre
+    @genre = Genre.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def genre_params
+    params.require(:genre).permit(:name)
+  end
 end

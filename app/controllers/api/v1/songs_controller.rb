@@ -13,7 +13,7 @@ class Api::V1::SongsController < Api::V1::GraphitiController
     song = SongResource.build(params)
 
     if song.save
-      render jsonapi: song, status: 201
+      render jsonapi: song, status: :created
     else
       render jsonapi_errors: song
     end
@@ -33,7 +33,7 @@ class Api::V1::SongsController < Api::V1::GraphitiController
     song = SongResource.find(params)
 
     if song.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: song
     end

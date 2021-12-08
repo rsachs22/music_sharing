@@ -1,10 +1,11 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :set_album, only: %i[show edit update destroy]
 
   # GET /albums
   def index
     @q = Album.ransack(params[:q])
-    @albums = @q.result(:distinct => true).includes(:songs, :album_reviews, :artist, :genre).page(params[:page]).per(10)
+    @albums = @q.result(distinct: true).includes(:songs, :album_reviews,
+                                                 :artist, :genre).page(params[:page]).per(10)
   end
 
   # GET /albums/1
@@ -19,17 +20,16 @@ class AlbumsController < ApplicationController
   end
 
   # GET /albums/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /albums
   def create
     @album = Album.new(album_params)
 
     if @album.save
-      message = 'Album was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Album was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @album, notice: message
       end
@@ -41,7 +41,7 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1
   def update
     if @album.update(album_params)
-      redirect_to @album, notice: 'Album was successfully updated.'
+      redirect_to @album, notice: "Album was successfully updated."
     else
       render :edit
     end
@@ -51,22 +51,22 @@ class AlbumsController < ApplicationController
   def destroy
     @album.destroy
     message = "Album was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to albums_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_album
-      @album = Album.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def album_params
-      params.require(:album).permit(:name, :album_art, :genre_id, :artist_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_album
+    @album = Album.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def album_params
+    params.require(:album).permit(:name, :album_art, :genre_id, :artist_id)
+  end
 end

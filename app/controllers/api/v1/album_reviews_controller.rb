@@ -13,7 +13,7 @@ class Api::V1::AlbumReviewsController < Api::V1::GraphitiController
     album_review = AlbumReviewResource.build(params)
 
     if album_review.save
-      render jsonapi: album_review, status: 201
+      render jsonapi: album_review, status: :created
     else
       render jsonapi_errors: album_review
     end
@@ -33,7 +33,7 @@ class Api::V1::AlbumReviewsController < Api::V1::GraphitiController
     album_review = AlbumReviewResource.find(params)
 
     if album_review.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: album_review
     end

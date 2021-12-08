@@ -1,13 +1,12 @@
 class User < ApplicationRecord
-  
   include JwtToken
-# Direct associations
+  # Direct associations
 
   has_many   :album_reviews,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :song_reviews,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 

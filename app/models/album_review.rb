@@ -8,8 +8,8 @@ class AlbumReview < ApplicationRecord
   # Indirect associations
 
   has_one    :artist,
-             :through => :album,
-             :source => :artist
+             through: :album,
+             source: :artist
 
   # Validations
 
@@ -18,5 +18,4 @@ class AlbumReview < ApplicationRecord
   def to_s
     user.to_s
   end
-
 end

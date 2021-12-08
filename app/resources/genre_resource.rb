@@ -6,7 +6,7 @@ class GenreResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :albums
+  has_many :albums
 
   # Indirect associations
 
@@ -17,5 +17,4 @@ class GenreResource < ApplicationResource
       end
     end
   end
-
 end
