@@ -1,7 +1,6 @@
 <% was_validated = album_review.errors.any? %>
 
 <%= form_with(model: album_review, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for user_id start -->
   <div class="form-group">
     <% user_class = "form-control" %>
     <% user_was_invalid = album_review.errors.include?(:user) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :user_id %>
-    <!-- Input for user_id start -->
     <%= f.collection_select :user_id, User.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for user_id end -->
     <% if user_was_invalid %>
       <% album_review.errors.full_messages_for(:user).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for user_id end -->
-  <!-- Label and input for body start -->
   <div class="form-group">
     <% body_class = "form-control" %>
     <% body_was_invalid = album_review.errors.include?(:body) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :body %>
-    <!-- Input for body start -->
     <%= f.text_field :body, class: body_class, placeholder: "Enter body" %>
-    <!-- Input for body end -->
     <% if body_was_invalid %>
       <% album_review.errors.full_messages_for(:body).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,8 +45,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for body end -->
-  <!-- Label and input for title start -->
   <div class="form-group">
     <% title_class = "form-control" %>
     <% title_was_invalid = album_review.errors.include?(:title) %>
@@ -67,9 +58,7 @@
     <% end %>
 
     <%= f.label :title %>
-    <!-- Input for title start -->
     <%= f.text_field :title, class: title_class, placeholder: "Enter title" %>
-    <!-- Input for title end -->
     <% if title_was_invalid %>
       <% album_review.errors.full_messages_for(:title).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -78,8 +67,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for title end -->
-  <!-- Label and input for stars start -->
   <div class="form-group">
     <% star_class = "form-control" %>
     <% star_was_invalid = album_review.errors.include?(:star) %>
@@ -93,9 +80,7 @@
     <% end %>
 
     <%= f.label :stars %>
-    <!-- Input for stars start -->
     <%= f.text_field :stars, class: star_class, placeholder: "Enter star" %>
-    <!-- Input for stars end -->
     <% if star_was_invalid %>
       <% album_review.errors.full_messages_for(:star).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -104,8 +89,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for stars end -->
-  <!-- Label and input for album_id start -->
   <div class="form-group">
     <% album_class = "form-control" %>
     <% album_was_invalid = album_review.errors.include?(:album) %>
@@ -119,9 +102,7 @@
     <% end %>
 
     <%= f.label :album_id %>
-    <!-- Input for album_id start -->
     <%= f.collection_select :album_id, Album.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for album_id end -->
     <% if album_was_invalid %>
       <% album_review.errors.full_messages_for(:album).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -130,6 +111,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for album_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

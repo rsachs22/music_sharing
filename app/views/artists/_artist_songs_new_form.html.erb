@@ -1,32 +1,18 @@
-<!-- Form song start -->
 <%= form_with(model: @song, local: true) do |f| %>
-<!-- Form song end -->
 
-  <!-- Label and input for name start -->
   <div class="form-group">
     <%= f.label :name %>
 
-    <!-- Input for name start -->
     <%= f.text_field :name, class: "form-control" %>
-    <!-- Input for name end -->
   </div>
-  <!-- Label and input for name end -->
 
-  <!-- Label and input for album_id start -->
   <div class="form-group">
     <%= f.label :album_id %>
 
-    <!-- Input for album_id start -->
     <%= f.collection_select :album_id, Album.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for album_id end -->
   </div>
-  <!-- Label and input for album_id end -->
 
-  <!-- Label and input for artist_id start -->
-  <!-- Input for artist_id start -->
   <%= f.hidden_field :artist_id, value: @artist.id %>
-  <!-- Input for artist_id end -->
-  <!-- Label and input for artist_id end -->
 
   <%= f.submit "Create song", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

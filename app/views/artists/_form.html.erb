@@ -1,7 +1,6 @@
 <% was_validated = artist.errors.any? %>
 
 <%= form_with(model: artist, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for artist_image start -->
   <div class="form-group">
     <% artist_image_class = "form-control" %>
     <% artist_image_was_invalid = artist.errors.include?(:artist_image) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :artist_image %>
-    <!-- Input for artist_image start -->
     <%= f.text_field :artist_image, class: artist_image_class, placeholder: "Enter artist image" %>
-    <!-- Input for artist_image end -->
     <% if artist_image_was_invalid %>
       <% artist.errors.full_messages_for(:artist_image).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for artist_image end -->
-  <!-- Label and input for artist_bio start -->
   <div class="form-group">
     <% artist_bio_class = "form-control" %>
     <% artist_bio_was_invalid = artist.errors.include?(:artist_bio) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :artist_bio %>
-    <!-- Input for artist_bio start -->
     <%= f.text_field :artist_bio, class: artist_bio_class, placeholder: "Enter artist bio" %>
-    <!-- Input for artist_bio end -->
     <% if artist_bio_was_invalid %>
       <% artist.errors.full_messages_for(:artist_bio).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,6 +45,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for artist_bio end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

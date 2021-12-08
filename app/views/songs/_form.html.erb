@@ -1,7 +1,6 @@
 <% was_validated = song.errors.any? %>
 
 <%= form_with(model: song, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for name start -->
   <div class="form-group">
     <% name_class = "form-control" %>
     <% name_was_invalid = song.errors.include?(:name) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :name %>
-    <!-- Input for name start -->
     <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
-    <!-- Input for name end -->
     <% if name_was_invalid %>
       <% song.errors.full_messages_for(:name).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for name end -->
-  <!-- Label and input for album_id start -->
   <div class="form-group">
     <% album_class = "form-control" %>
     <% album_was_invalid = song.errors.include?(:album) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :album_id %>
-    <!-- Input for album_id start -->
     <%= f.collection_select :album_id, Album.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for album_id end -->
     <% if album_was_invalid %>
       <% song.errors.full_messages_for(:album).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,8 +45,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for album_id end -->
-  <!-- Label and input for artist_id start -->
   <div class="form-group">
     <% artist_class = "form-control" %>
     <% artist_was_invalid = song.errors.include?(:artist) %>
@@ -67,9 +58,7 @@
     <% end %>
 
     <%= f.label :artist_id %>
-    <!-- Input for artist_id start -->
     <%= f.collection_select :artist_id, Artist.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for artist_id end -->
     <% if artist_was_invalid %>
       <% song.errors.full_messages_for(:artist).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -78,6 +67,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for artist_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

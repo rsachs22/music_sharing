@@ -1,12 +1,7 @@
 <% was_validated = song_review.errors.any? %>
 
 <%= form_with(model: song_review, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for user_id start -->
-  <!-- Input for "user_id" start -->
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <!-- Input for "user_id" end -->
-  <!-- Label and input for user_id end -->
-  <!-- Label and input for body start -->
   <div class="form-group">
     <% body_class = "form-control" %>
     <% body_was_invalid = song_review.errors.include?(:body) %>
@@ -20,9 +15,7 @@
     <% end %>
 
     <%= f.label :body %>
-    <!-- Input for body start -->
     <%= f.text_field :body, class: body_class, placeholder: "Enter body" %>
-    <!-- Input for body end -->
     <% if body_was_invalid %>
       <% song_review.errors.full_messages_for(:body).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -31,8 +24,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for body end -->
-  <!-- Label and input for title start -->
   <div class="form-group">
     <% title_class = "form-control" %>
     <% title_was_invalid = song_review.errors.include?(:title) %>
@@ -46,9 +37,7 @@
     <% end %>
 
     <%= f.label :title %>
-    <!-- Input for title start -->
     <%= f.text_field :title, class: title_class, placeholder: "Enter title" %>
-    <!-- Input for title end -->
     <% if title_was_invalid %>
       <% song_review.errors.full_messages_for(:title).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -57,8 +46,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for title end -->
-  <!-- Label and input for stars start -->
   <div class="form-group">
     <% star_class = "form-control" %>
     <% star_was_invalid = song_review.errors.include?(:star) %>
@@ -72,9 +59,7 @@
     <% end %>
 
     <%= f.label :stars %>
-    <!-- Input for stars start -->
     <%= f.text_field :stars, class: star_class, placeholder: "Enter star" %>
-    <!-- Input for stars end -->
     <% if star_was_invalid %>
       <% song_review.errors.full_messages_for(:star).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -83,8 +68,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for stars end -->
-  <!-- Label and input for song_id start -->
   <div class="form-group">
     <% song_class = "form-control" %>
     <% song_was_invalid = song_review.errors.include?(:song) %>
@@ -98,9 +81,7 @@
     <% end %>
 
     <%= f.label :song_id %>
-    <!-- Input for song_id start -->
     <%= f.collection_select :song_id, Song.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for song_id end -->
     <% if song_was_invalid %>
       <% song_review.errors.full_messages_for(:song).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -109,6 +90,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for song_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>
