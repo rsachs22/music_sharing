@@ -1,6 +1,9 @@
 class Artist < ApplicationRecord
   # Direct associations
 
+  has_many   :songs,
+             :dependent => :destroy
+
   has_many   :albums,
              :dependent => :destroy
 
