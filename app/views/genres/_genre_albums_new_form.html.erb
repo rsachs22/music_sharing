@@ -33,7 +33,7 @@
     <%= f.label :artist_id %>
 
     <!-- Input for artist_id start -->
-    <%= f.text_field :artist_id, class: "form-control" %>
+    <%= f.collection_select :artist_id, Artist.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for artist_id end -->
   </div>
   <!-- Label and input for artist_id end -->

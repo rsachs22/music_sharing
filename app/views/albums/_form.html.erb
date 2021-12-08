@@ -94,7 +94,7 @@
 
     <%= f.label :artist_id %>
     <!-- Input for artist_id start -->
-    <%= f.number_field :artist_id, class: artist_class, placeholder: "Enter artist" %>
+    <%= f.collection_select :artist_id, Artist.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for artist_id end -->
     <% if artist_was_invalid %>
       <% album.errors.full_messages_for(:artist).each do |message| %>
