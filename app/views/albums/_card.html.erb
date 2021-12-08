@@ -1,0 +1,56 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Album #<%= album.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Name</dt>
+      <!-- Display name start -->
+      <dd><%= album.name %></dd>
+      <!-- Display name end -->
+
+      <dt>Album art</dt>
+      <!-- Display album_art start -->
+      <dd><%= album.album_art %></dd>
+      <!-- Display album_art end -->
+
+      <dt>Genre</dt>
+      <!-- Display genre_id start -->
+      <dd><%= album.genre_id %></dd>
+      <!-- Display genre_id end -->
+
+      <dt>Artist</dt>
+      <!-- Display artist_id start -->
+      <dd><%= album.artist_id %></dd>
+      <!-- Display artist_id end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back album, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link album start -->
+      <div class="col">
+        <%= link_to edit_album_url(album), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link album end -->
+
+      <!-- Delete link album start -->
+      <div class="col">
+        <%= link_to album, method: :delete, data: { confirm: "Do you really want to delete this album?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link album end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(album.updated_at) %> ago
+  </div>
+</div>

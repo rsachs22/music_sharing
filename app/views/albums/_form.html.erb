@@ -1,0 +1,109 @@
+<% was_validated = album.errors.any? %>
+
+<%= form_with(model: album, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for name start -->
+  <div class="form-group">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = album.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+    <!-- Input for name start -->
+    <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+    <!-- Input for name end -->
+    <% if name_was_invalid %>
+      <% album.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for name end -->
+  <!-- Label and input for album_art start -->
+  <div class="form-group">
+    <% album_art_class = "form-control" %>
+    <% album_art_was_invalid = album.errors.include?(:album_art) %>
+
+    <% if was_validated %>
+      <% if album_art_was_invalid %>
+        <% album_art_class << " is-invalid" %>
+      <% else %>
+        <% album_art_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :album_art %>
+    <!-- Input for album_art start -->
+    <%= f.text_field :album_art, class: album_art_class, placeholder: "Enter album art" %>
+    <!-- Input for album_art end -->
+    <% if album_art_was_invalid %>
+      <% album.errors.full_messages_for(:album_art).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for album_art end -->
+  <!-- Label and input for genre_id start -->
+  <div class="form-group">
+    <% genre_class = "form-control" %>
+    <% genre_was_invalid = album.errors.include?(:genre) %>
+
+    <% if was_validated %>
+      <% if genre_was_invalid %>
+        <% genre_class << " is-invalid" %>
+      <% else %>
+        <% genre_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :genre_id %>
+    <!-- Input for genre_id start -->
+    <%= f.number_field :genre_id, class: genre_class, placeholder: "Enter genre" %>
+    <!-- Input for genre_id end -->
+    <% if genre_was_invalid %>
+      <% album.errors.full_messages_for(:genre).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for genre_id end -->
+  <!-- Label and input for artist_id start -->
+  <div class="form-group">
+    <% artist_class = "form-control" %>
+    <% artist_was_invalid = album.errors.include?(:artist) %>
+
+    <% if was_validated %>
+      <% if artist_was_invalid %>
+        <% artist_class << " is-invalid" %>
+      <% else %>
+        <% artist_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :artist_id %>
+    <!-- Input for artist_id start -->
+    <%= f.number_field :artist_id, class: artist_class, placeholder: "Enter artist" %>
+    <!-- Input for artist_id end -->
+    <% if artist_was_invalid %>
+      <% album.errors.full_messages_for(:artist).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for artist_id end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
