@@ -12,12 +12,20 @@
 
       <dt>Album</dt>
       <!-- Display album_id start -->
-      <dd><%= song.album_id %></dd>
+      <dd>
+        <% if @song.album.present? %>
+          <%= link_to song.album, song.album %>
+        <% end %>
+      </dd>
       <!-- Display album_id end -->
 
       <dt>Artist</dt>
       <!-- Display artist_id start -->
-      <dd><%= song.artist_id %></dd>
+      <dd>
+        <% if @song.artist.present? %>
+          <%= link_to song.artist, song.artist %>
+        <% end %>
+      </dd>
       <!-- Display artist_id end -->
 
     </dl>

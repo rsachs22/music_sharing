@@ -17,12 +17,20 @@
 
       <dt>Genre</dt>
       <!-- Display genre_id start -->
-      <dd><%= album.genre_id %></dd>
+      <dd>
+        <% if @album.genre.present? %>
+          <%= link_to album.genre, album.genre %>
+        <% end %>
+      </dd>
       <!-- Display genre_id end -->
 
       <dt>Artist</dt>
       <!-- Display artist_id start -->
-      <dd><%= album.artist_id %></dd>
+      <dd>
+        <% if @album.artist.present? %>
+          <%= link_to album.artist, album.artist %>
+        <% end %>
+      </dd>
       <!-- Display artist_id end -->
 
     </dl>

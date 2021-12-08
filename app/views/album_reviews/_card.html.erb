@@ -7,7 +7,11 @@
     <dl class="mb-1">
       <dt>User</dt>
       <!-- Display user_id start -->
-      <dd><%= album_review.user_id %></dd>
+      <dd>
+        <% if @album_review.user.present? %>
+          <%= link_to album_review.user, album_review.user %>
+        <% end %>
+      </dd>
       <!-- Display user_id end -->
 
       <dt>Body</dt>
@@ -27,7 +31,11 @@
 
       <dt>Album</dt>
       <!-- Display album_id start -->
-      <dd><%= album_review.album_id %></dd>
+      <dd>
+        <% if @album_review.album.present? %>
+          <%= link_to album_review.album, album_review.album %>
+        <% end %>
+      </dd>
       <!-- Display album_id end -->
 
     </dl>
