@@ -1,6 +1,9 @@
 class Album < ApplicationRecord
   # Direct associations
 
+  has_many   :album_reviews,
+             :dependent => :destroy
+
   has_many   :songs,
              :dependent => :destroy
 
